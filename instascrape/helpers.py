@@ -36,3 +36,29 @@ def extract_email(input_string):
     if email_regex_result:
         return email_regex_result.group(0) if validate_email(email_regex_result.group(0)) else None
     return
+
+
+def extract_hashtags(input_string):
+    """
+    Extracts hashtags from a string of characters
+    """
+    removed_emojis = emoji_remover(input_string)
+    hash_regex = re.compile(r'(^|\s)(#[a-z\d-]+)')
+    possible_hashtags = hash_regex.findall(removed_emojis)
+    if possible_hashtags:
+        return [tag[1].replace('#', '') for tag in possible_hashtags]
+    return
+
+
+def extract_mentions(input_string):
+    """
+    Extracts hashtags from a string of characters
+    """
+    removed_emojis = emoji_remover(input_string)
+    mention_regex = re.compile(r'(^|\s)(@[a-z\d-]+)')
+    possible_mentions = mention_regex.findall(removed_emojis)
+    if possible_mentions:
+        return [tag[1].replace('@', '') for tag in possible_mentions]
+    return
+
+caption = "Aloha Weekend! It's time for some new adventures. 💦🌴What are your plans ? - 📷 by @fashionismyfortee @hellofresh #kaptenandson #bekapten"
