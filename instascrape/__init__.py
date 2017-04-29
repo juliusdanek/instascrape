@@ -3,7 +3,6 @@ from lxml import etree
 import json
 from helpers import extract_email
 import random
-from time import sleep
 
 
 class InstaClient(object):
@@ -63,7 +62,6 @@ class InstaClient(object):
     def retreive_user_media(self, handle, num_media=None):
         url = 'https://www.instagram.com/query/'
         user_attributes = self.bio_scrape(handle)
-        sleep(2)
         user_id = user_attributes['id']
         num_media = num_media if num_media else user_attributes['media_count']
         form_data_raw = 'q=ig_user%28{user_id}%29%20%7B%20media.after%280%2C%20{num_media}%29%20%7B%20%20%20count%2C%20%20%20nodes%20%7B%20%20%20%20%20__typename%2C%20%20%20%20%20caption%2C%20%20%20%20%20code%2C%20%20%20%20%20comments%20%7B%20%20%20%20%20%20%20count%20%20%20%20%20%7D%2C%20%20%20%20%20comments_disabled%2C%20%20%20%20%20date%2C%20%20%20%20%20dimensions%20%7B%20%20%20%20%20%20%20height%2C%20%20%20%20%20%20%20width%20%20%20%20%20%7D%2C%20%20%20%20%20display_src%2C%20%20%20%20%20id%2C%20%20%20%20%20is_video%2C%20%20%20%20%20likes%20%7B%20%20%20%20%20%20%20count%20%2C%20id%20%20%20%20%7D%2C%20%20%20%20%20owner%20%7B%20%20%20%20%20%20%20id%20%20%20%20%20%7D%2C%20%20%20%20%20thumbnail_src%2C%20%20%20%20%20video_views%20%20%20%7D%2C%20%20%20page_info%20%7D%20%20%7D'
@@ -84,7 +82,6 @@ class InstaClient(object):
 if __name__ == '__main__':
     client = InstaClient()
     print(client.bio_scrape('instagram'))
-    sleep(2)
     #num_media is needed for accounts with 2000+ posts
     user_media = client.retreive_user_media(handle='instagram')
     print(user_media.keys())
