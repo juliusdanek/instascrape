@@ -29,6 +29,8 @@ def extract_email(input_string):
     """
     Extracts email from a string of characters
     """
+
+    input_string = str(input_string)
     # remove emojis from text
     remove_emojis = emoji_remover(input_string)
     # extract email

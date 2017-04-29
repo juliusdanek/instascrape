@@ -1,0 +1,7 @@
+version: '2'
+services:
+  app:
+    build: .
+    command: python /usr/src/app/instascrape/__init__.py
+    volumes:
+      - .:/usr/src/app
