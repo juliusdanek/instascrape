@@ -29,6 +29,8 @@ def extract_email(input_string):
     """
     Extracts email from a string of characters
     """
+    if not input_string:
+        return
     # remove emojis from text
     remove_emojis = emoji_remover(input_string)
     # extract email
@@ -42,6 +44,8 @@ def extract_hashtags(input_string):
     """
     Extracts hashtags from a string of characters
     """
+    if not input_string:
+        return
     removed_emojis = emoji_remover(input_string)
     hash_regex = re.compile(r'(^|\s)(#[a-z\d-]+)')
     possible_hashtags = hash_regex.findall(removed_emojis)
@@ -54,6 +58,8 @@ def extract_mentions(input_string):
     """
     Extracts hashtags from a string of characters
     """
+    if not input_string:
+        return
     removed_emojis = emoji_remover(input_string)
     mention_regex = re.compile(r'(^|\s)(@[a-z\d-]+)')
     possible_mentions = mention_regex.findall(removed_emojis)
