@@ -54,6 +54,13 @@ def extract_hashtags(input_string):
     return
 
 
+def remove_dot(input_string):
+    if input_string[-1] != '.':
+        return input_string
+    else:
+        return remove_dot(input_string[:-1])
+
+
 def extract_mentions(input_string):
     """
     Extracts hashtags from a string of characters
@@ -61,10 +68,10 @@ def extract_mentions(input_string):
     if not input_string:
         return
     removed_emojis = emoji_remover(input_string.lower())
-    mention_regex = re.compile(r'(^|\s)(@[^\s,!]+)')
+    mention_regex = re.compile(r'(^|\s)(@[^\s,!\')]+)')
     possible_mentions = mention_regex.findall(removed_emojis)
     if possible_mentions:
-        return [tag[1].replace('@', '') for tag in possible_mentions]
+        return [remove_dot(tag[1].replace('@', '')) for tag in possible_mentions]
     return
 
 caption = "Aloha Weekend! It's time for some new adventures. 💦🌴What are your plans ? - 📷 by @fashionismyfortee @hellofresh #kaptenandson #bekapten"
