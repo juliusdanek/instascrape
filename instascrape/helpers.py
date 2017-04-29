@@ -60,8 +60,8 @@ def extract_mentions(input_string):
     """
     if not input_string:
         return
-    removed_emojis = emoji_remover(input_string)
-    mention_regex = re.compile(r'(^|\s)(@[a-z\d-]+)')
+    removed_emojis = emoji_remover(input_string.lower())
+    mention_regex = re.compile(r'(^|\s)(@[^\s,]+)')
     possible_mentions = mention_regex.findall(removed_emojis)
     if possible_mentions:
         return [tag[1].replace('@', '') for tag in possible_mentions]
