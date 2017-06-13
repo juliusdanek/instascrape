@@ -34,7 +34,7 @@ def extract_email(input_string):
     # remove emojis from text
     remove_emojis = emoji_remover(input_string)
     # extract email
-    email_regex_result = re.search(r'[\w\.-]+@[\w\.-]+', remove_emojis)
+    email_regex_result = re.search(r'[\w\.-]+@[\w-]+\.[\w-]+', remove_emojis)
     if email_regex_result:
         return email_regex_result.group(0) if validate_email(email_regex_result.group(0)) else None
     return
