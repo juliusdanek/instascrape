@@ -53,11 +53,11 @@ class InstaClient(object):
             attributes['bio'] = bio
             attributes['ig_handle'] = handle
             attributes['ig_url'] = url
-            attributes['id'] = user['id']
+            attributes['ig_id'] = user['id']
             attributes['media_count'] = user['media']['count']
             # attributes['language'] = data_dict['language_code']
             # attributes['country_id'] = data_dict['country_code']
-        return attributes
+        return (attributes, data_dict)
 
     def retreive_user_media(self, handle, num_media=None, cursor=None):
         url = 'https://www.instagram.com/graphql/query/'
