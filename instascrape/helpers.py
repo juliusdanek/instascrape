@@ -68,10 +68,8 @@ def extract_mentions(input_string):
     if not input_string:
         return
     removed_emojis = emoji_remover(input_string.lower())
-    mention_regex = re.compile(r'(^|\s)(@[^\s,!\':)]+)')
+    mention_regex = re.compile(r'(^|\s)(@[\._\w]+)')
     possible_mentions = mention_regex.findall(removed_emojis)
     if possible_mentions:
         return [remove_dot(tag[1].replace('@', '')) for tag in possible_mentions]
     return
-
-caption = "Aloha Weekend! It's time for some new adventures. 💦🌴What are your plans ? - 📷 by @fashionismyfortee @hellofresh #kaptenandson #bekapten"
