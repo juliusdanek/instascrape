@@ -1,7 +1,7 @@
 import requests
 from lxml import etree
 import json
-from helpers import extract_email
+from .helpers import extract_email
 import random
 
 
